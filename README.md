@@ -13,6 +13,51 @@ This project was developed as part of **Harvard's Introduction to Artificial Int
 
 ---
 
+## 🔍 Technical Details: PageRank Formula & Markov Chain Connection
+
+### PageRank Formula
+The PageRank of a page *p* is calculated as:
+
+PR(p) = (1 - d)/N + d * Σ(PR(i)/NumLinks(i))
+
+**Where**:
+- **PR(p)**: PageRank of page *p*  
+- **d**: Damping factor (0.85 = 85% probability of following links)  
+- **N**: Total number of pages in the network  
+- **PR(i)**: PageRank of page *i* that links to *p*  
+- **NumLinks(i)**: Number of outgoing links on page *i*
+
+**Formula Components**:
+1. **(1 - d)/N**: Represents random jumps to any page (teleportation)  
+2. **d * Σ(PR(i)/NumLinks(i))**: Cumulative rank contribution from all linking pages
+
+## 🌐 Markov Chain Explanation
+
+The random surfer model implements a **Markov Process** where:
+
+- **States**  
+  Represented by web pages in the network
+
+- **Transitions**  
+  Defined by hyperlinks between pages
+
+- **Transition Matrix**  
+  Probability from page *i* to page *p*:  
+  `d/NumLinks(i) + (1-d)/N`  
+  Where:  
+  - `d` = damping factor (0.85)  
+  - `NumLinks(i)` = number of outgoing links from page *i*  
+  - `N` = total number of pages
+
+- **Stationary Distribution**  
+  Corresponds to PageRank values:  
+  - Represents long-term probability of being on each page  
+  - Calculated through either:  
+    - Random walks (surfer sampling method)  
+    - Eigenvector calculation (iterative algorithm)
+
+---
+
 ## 📂 Datasets
 
 The repository includes sample datasets consisting of **HTML pages** with links between them. The structure is automatically processed to extract:
